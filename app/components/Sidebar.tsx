@@ -4,7 +4,6 @@ import { useState } from "react";
 import { Menu, X, Github } from "lucide-react";
 import Link from "next/link";
 import Logo from "./Logo";
-import DarkModeToggle from "./DarkModeToggle";
 import NavSection from "./NavSection";
 
 const navSections = [
@@ -111,8 +110,7 @@ export default function Sidebar() {
 
           {/* Footer */}
           <div className="p-4 border-t border-zinc-200 dark:border-zinc-800">
-            <div className="flex items-center justify-between">
-              <DarkModeToggle />
+            <div className="flex items-center justify-end">
               <a
                 href="https://github.com/WillLunden/guitar-physics"
                 target="_blank"
