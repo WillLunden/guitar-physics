@@ -3,6 +3,20 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --text-primary: #18181b;
+  --text-secondary: #27272a;
+  --text-muted: #3f3f46;
+  --gradient-primary: linear-gradient(135deg, #7c3aed, #f97316);
+  --purple-600: #7c3aed;
+  --orange-500: #f97316;
+}
+
+.dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+  --text-primary: #e4e4e7;
+  --text-secondary: #d4d4d8;
+  --text-muted: #a1a1aa;
 }
 
 @theme inline {
@@ -12,15 +26,67 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+}
+
+/* Force all text in main content to be readable */
+main {
+  color: var(--text-primary);
+}
+
+main p, main li, main span, main label, main div,
+main h1, main h2, main h3, main h4, main h5, main h6,
+main strong, main em, main td, main th, main a {
+  color: var(--text-primary) !important;
+}
+
+/* Exceptions - elements that need their own colors */
+main .text-white { color: white !important; }
+main .text-transparent { color: transparent !important; }
+main [class*="text-purple"] { color: revert !important; }
+main [class*="text-orange"] { color: revert !important; }
+main [class*="text-red"] { color: revert !important; }
+main [class*="text-green"] { color: revert !important; }
+main [class*="text-blue"] { color: revert !important; }
+main [class*="text-yellow"] { color: revert !important; }
+main [class*="bg-clip-text"] { color: transparent !important; }
+
+/* Gradient text utility */
+.gradient-text {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Smooth transitions for dark mode */
+* {
+  transition-property: background-color, border-color;
+  transition-duration: 150ms;
+  transition-timing-function: ease-in-out;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #a1a1aa;
+  border-radius: 4px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #52525b;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #71717a;
 }
