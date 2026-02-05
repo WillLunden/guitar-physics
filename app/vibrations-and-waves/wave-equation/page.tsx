@@ -17,11 +17,14 @@ export default function WaveEquationPage() {
       <div className="space-y-12">
         {/* Section 1: Physical Interpretation */}
         <section>
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-3" style={{ color: 'var(--text-primary)' }}>
+          <h2
+            className="text-2xl font-bold mb-4 flex items-center gap-3"
+            style={{ color: "var(--text-primary)" }}
+          >
             <span className="flex items-center justify-center w-8 h-8 rounded-full bg-purple-600 text-white text-sm font-bold">
               1
             </span>
-            Physical Interpretation
+            The 1D Wave Equation and Its Physical Meaning
           </h2>
 
           <p className="text-zinc-900 dark:text-zinc-300 leading-relaxed">
@@ -32,7 +35,10 @@ export default function WaveEquationPage() {
           </p>
 
           <div className="bg-gradient-to-r from-purple-50 to-orange-50 dark:from-purple-900/20 dark:to-orange-900/20 p-6 rounded-xl my-6 border border-purple-200 dark:border-purple-800">
-            <div className="text-center font-mono text-2xl" style={{ color: 'var(--text-primary)' }}>
+            <div
+              className="text-center font-mono text-2xl"
+              style={{ color: "var(--text-primary)" }}
+            >
               ∂²y/∂t² = c² · ∂²y/∂x²
             </div>
           </div>
@@ -43,7 +49,7 @@ export default function WaveEquationPage() {
 
           <ul className="list-none space-y-4 my-6">
             <li className="flex gap-4 items-start">
-              <span className="font-mono text-purple-600 dark:text-purple-400 font-bold">
+              <span className="font-mono text-purple-600 dark:text-purple-400 font-bold mr-2">
                 y(x,t)
               </span>
               <span className="text-zinc-900 dark:text-zinc-300">
@@ -52,13 +58,14 @@ export default function WaveEquationPage() {
               </span>
             </li>
             <li className="flex gap-4 items-start">
-              <span className="font-mono text-purple-600 dark:text-purple-400 font-bold">
+              <span className="font-mono text-purple-600 dark:text-purple-400 font-bold mr-4">
                 ∂²y/∂t²
               </span>
+
               <span className="text-zinc-900 dark:text-zinc-300">
                 The acceleration of the string at each point. This represents
-                how quickly the velocity is changing. This is Newton&apos;s F = ma in
-                disguise.
+                how quickly the velocity is changing. This is Newton&apos;s F =
+                ma in disguise.
               </span>
             </li>
             <li className="flex gap-4 items-start">
@@ -83,7 +90,7 @@ export default function WaveEquationPage() {
           </ul>
 
           <div className="bg-zinc-100 dark:bg-zinc-800 p-4 rounded-lg">
-            <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>
+            <p className="text-sm" style={{ color: "var(--text-secondary)" }}>
               <strong>Physical intuition:</strong> The wave equation says that
               the acceleration at any point is proportional to how curved the
               string is there. More curvature → more force → more acceleration.
@@ -99,7 +106,7 @@ export default function WaveEquationPage() {
             <span className="flex items-center justify-center w-8 h-8 rounded-full bg-purple-600 text-white text-sm font-bold">
               2
             </span>
-            Solving the Equation
+            Forming the General Solution
           </h2>
 
           <p className="text-zinc-900 dark:text-zinc-300 leading-relaxed">
@@ -110,7 +117,10 @@ export default function WaveEquationPage() {
           </p>
 
           <div className="bg-gradient-to-r from-purple-50 to-orange-50 dark:from-purple-900/20 dark:to-orange-900/20 p-6 rounded-xl my-6 border border-purple-200 dark:border-purple-800">
-            <div className="text-center font-mono text-xl" style={{ color: 'var(--text-primary)' }}>
+            <div
+              className="text-center font-mono text-xl"
+              style={{ color: "var(--text-primary)" }}
+            >
               y(x,t) = X(x) · T(t)
             </div>
           </div>
@@ -120,7 +130,10 @@ export default function WaveEquationPage() {
             X·T:
           </p>
 
-          <div className="bg-zinc-100 dark:bg-zinc-800 p-4 rounded-lg my-4 font-mono text-center" style={{ color: 'var(--text-primary)' }}>
+          <div
+            className="bg-zinc-100 dark:bg-zinc-800 p-4 rounded-lg my-4 font-mono text-center"
+            style={{ color: "var(--text-primary)" }}
+          >
             (1/T) · d²T/dt² = c² · (1/X) · d²X/dx² = -ω²
           </div>
 
@@ -133,19 +146,31 @@ export default function WaveEquationPage() {
 
           <div className="grid md:grid-cols-2 gap-4 my-6">
             <div className="bg-white dark:bg-zinc-900 p-4 rounded-lg border border-zinc-200 dark:border-zinc-700">
-              <p className="font-mono text-center" style={{ color: 'var(--text-primary)' }}>
+              <p
+                className="font-mono text-center"
+                style={{ color: "var(--text-primary)" }}
+              >
                 d²X/dx² + k²X = 0
               </p>
-              <p className="text-sm text-center mt-2" style={{ color: 'var(--text-muted)' }}>
+              <p
+                className="text-sm text-center mt-2"
+                style={{ color: "var(--text-muted)" }}
+              >
                 where k = ω/c
               </p>
             </div>
             <div className="bg-white dark:bg-zinc-900 p-4 rounded-lg border border-zinc-200 dark:border-zinc-700">
-              <p className="font-mono text-center" style={{ color: 'var(--text-primary)' }}>
+              <p
+                className="font-mono text-center"
+                style={{ color: "var(--text-primary)" }}
+              >
                 d²T/dt² + ω²T = 0
               </p>
-              <p className="text-sm text-center mt-2" style={{ color: 'var(--text-muted)' }}>
-                Simple harmonic motion!
+              <p
+                className="text-sm text-center mt-2"
+                style={{ color: "var(--text-muted)" }}
+              >
+                Note the similarity to spatial equation
               </p>
             </div>
           </div>
@@ -180,7 +205,10 @@ export default function WaveEquationPage() {
           </p>
 
           <div className="bg-gradient-to-r from-purple-50 to-orange-50 dark:from-purple-900/20 dark:to-orange-900/20 p-6 rounded-xl my-6 border border-purple-200 dark:border-purple-800">
-            <div className="text-center font-mono text-xl space-y-2" style={{ color: 'var(--text-primary)' }}>
+            <div
+              className="text-center font-mono text-xl space-y-2"
+              style={{ color: "var(--text-primary)" }}
+            >
               <div>y(0, t) = 0 for all t</div>
               <div>y(L, t) = 0 for all t</div>
             </div>
@@ -191,10 +219,16 @@ export default function WaveEquationPage() {
           </p>
 
           <div className="bg-zinc-100 dark:bg-zinc-800 p-4 rounded-lg my-4">
-            <p className="font-mono text-center" style={{ color: 'var(--text-primary)' }}>
+            <p
+              className="font-mono text-center"
+              style={{ color: "var(--text-primary)" }}
+            >
               X(0) = A·sin(0) + B·cos(0) = B = 0
             </p>
-            <p className="text-sm text-center mt-2" style={{ color: 'var(--text-muted)' }}>
+            <p
+              className="text-sm text-center mt-2"
+              style={{ color: "var(--text-muted)" }}
+            >
               So B must be zero, leaving only the sine term.
             </p>
           </div>
@@ -204,33 +238,54 @@ export default function WaveEquationPage() {
           </p>
 
           <div className="bg-zinc-100 dark:bg-zinc-800 p-4 rounded-lg my-4">
-            <p className="font-mono text-center" style={{ color: 'var(--text-primary)' }}>
+            <p
+              className="font-mono text-center"
+              style={{ color: "var(--text-primary)" }}
+            >
               X(L) = A·sin(kL) = 0
             </p>
-            <p className="text-sm text-center mt-2" style={{ color: 'var(--text-muted)' }}>
+            <p
+              className="text-sm text-center mt-2"
+              style={{ color: "var(--text-muted)" }}
+            >
               This requires kL = nπ, where n = 1, 2, 3, ...
             </p>
           </div>
 
           <p className="text-zinc-900 dark:text-zinc-300 leading-relaxed">
-            This is the crucial result:{" "}
-            <strong>
-              only certain wavelengths (and therefore frequencies) are allowed
-            </strong>
-            . The wave number must satisfy:
+            We refer to k as the <strong>wave number</strong>, related to
+            wavelength λ by k = 2π/λ. The boundary conditions mean that{" "}
+            <strong>only certain wavelengths are allowed</strong>. The wave
+            number must satisfy:
           </p>
 
           <div className="bg-gradient-to-r from-purple-50 to-orange-50 dark:from-purple-900/20 dark:to-orange-900/20 p-6 rounded-xl my-6 border border-purple-200 dark:border-purple-800">
-            <div className="text-center font-mono text-xl" style={{ color: 'var(--text-primary)' }}>
+            <div
+              className="text-center font-mono text-xl"
+              style={{ color: "var(--text-primary)" }}
+            >
               k_n = nπ/L → λ_n = 2L/n
             </div>
           </div>
 
           <p className="text-zinc-900 dark:text-zinc-300 leading-relaxed">
-            The longest allowed wavelength is λ₁ = 2L (the fundamental), then
-            λ₂ = L, λ₃ = 2L/3, and so on. Each corresponds to a standing wave
+            The longest allowed wavelength is λ₁ = 2L (the fundamental), then λ₂
+            = L, λ₃ = 2L/3, and so on. Each corresponds to a standing wave
             pattern with n antinodes.
           </p>
+
+          <p className="text-zinc-900 dark:text-zinc-300 leading-relaxed">
+            Finally, looknig at the relationship k = ω/c, we see the allowed
+            <strong> angular frequencies</strong>:
+          </p>
+          <div className="bg-gradient-to-r from-purple-50 to-orange-50 dark:from-purple-900/20 dark:to-orange-900/20 p-6 rounded-xl my-6 border border-purple-200 dark:border-purple-800">
+            <div
+              className="text-center font-mono text-xl"
+              style={{ color: "var(--text-primary)" }}
+            >
+              ω_n = k_n · c = nπc/L
+            </div>
+          </div>
         </section>
 
         {/* Section 4: Initial Conditions */}
@@ -243,12 +298,16 @@ export default function WaveEquationPage() {
           </h2>
 
           <p className="text-zinc-900 dark:text-zinc-300 leading-relaxed">
-            To fully specify the string&apos;s motion, we need two initial
-            conditions, the initial displacement and initial velocity at t = 0:
+            To fully specify the string&apos;s motion after a pluck, we need two
+            initial conditions, the initial displacement and initial velocity at
+            t = 0:
           </p>
 
           <div className="bg-gradient-to-r from-purple-50 to-orange-50 dark:from-purple-900/20 dark:to-orange-900/20 p-6 rounded-xl my-6 border border-purple-200 dark:border-purple-800">
-            <div className="text-center font-mono text-lg space-y-2" style={{ color: 'var(--text-primary)' }}>
+            <div
+              className="text-center font-mono text-lg space-y-2"
+              style={{ color: "var(--text-primary)" }}
+            >
               <div>y(x, 0) = f(x) : initial shape</div>
               <div>∂y/∂t(x, 0) = g(x) : initial velocity</div>
             </div>
@@ -260,19 +319,20 @@ export default function WaveEquationPage() {
 
           <ul className="list-disc pl-6 space-y-2 text-zinc-900 dark:text-zinc-300">
             <li>
-              <strong>Initial shape f(x):</strong> A triangle shape, zero at both
-              ends, peaked where you pluck. If you pluck at position x₀ with
-              height h, the shape is two line segments meeting at (x₀, h).
+              <strong>Initial shape f(x):</strong> Can be approximated as a
+              triangle shape, zero at both ends, peaked where you pluck. If you
+              pluck at position x₀ with height h, the shape is two line segments
+              meeting at (x₀, h).
             </li>
             <li>
               <strong>Initial velocity g(x):</strong> Zero everywhere. When you
-              release the string, it&apos;s momentarily stationary before it
+              first release the string, it&apos;s initially stationary before it
               starts moving.
             </li>
           </ul>
 
           <div className="bg-zinc-100 dark:bg-zinc-800 p-4 rounded-lg mt-4">
-            <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>
+            <p className="text-sm" style={{ color: "var(--text-secondary)" }}>
               <strong>Why does pluck position matter?</strong> Plucking at
               different positions creates different triangular shapes, which
               decompose into different mixtures of harmonics. Plucking near the
@@ -298,7 +358,10 @@ export default function WaveEquationPage() {
           </p>
 
           <div className="bg-gradient-to-r from-purple-50 to-orange-50 dark:from-purple-900/20 dark:to-orange-900/20 p-6 rounded-xl my-6 border border-purple-200 dark:border-purple-800">
-            <div className="text-center font-mono text-lg" style={{ color: 'var(--text-primary)' }}>
+            <div
+              className="text-center font-mono text-lg"
+              style={{ color: "var(--text-primary)" }}
+            >
               y_n(x,t) = sin(nπx/L) · [A_n cos(ω_n t) + B_n sin(ω_n t)]
             </div>
           </div>
@@ -308,15 +371,17 @@ export default function WaveEquationPage() {
           </p>
 
           <div className="bg-gradient-to-r from-purple-50 to-orange-50 dark:from-purple-900/20 dark:to-orange-900/20 p-6 rounded-xl my-6 border border-purple-200 dark:border-purple-800">
-            <div className="text-center font-mono text-xl" style={{ color: 'var(--text-primary)' }}>
+            <div
+              className="text-center font-mono text-xl"
+              style={{ color: "var(--text-primary)" }}
+            >
               f_n = n · √(T/μ) / (2L) = n · f₁
             </div>
           </div>
 
           <p className="text-zinc-900 dark:text-zinc-300 leading-relaxed">
             Notice that the frequencies form a <strong>harmonic series</strong>:
-            f₂ = 2f₁, f₃ = 3f₁, etc. This is why stringed instruments sound
-            musical because the overtones are integer multiples of the fundamental.
+            f₂ = 2f₁, f₃ = 3f₁, etc.
           </p>
 
           <p className="text-zinc-900 dark:text-zinc-300 leading-relaxed mt-4">
@@ -325,28 +390,34 @@ export default function WaveEquationPage() {
           </p>
 
           <div className="bg-gradient-to-r from-purple-50 to-orange-50 dark:from-purple-900/20 dark:to-orange-900/20 p-6 rounded-xl my-6 border border-purple-200 dark:border-purple-800">
-            <div className="text-center font-mono text-lg" style={{ color: 'var(--text-primary)' }}>
+            <div
+              className="text-center font-mono text-lg"
+              style={{ color: "var(--text-primary)" }}
+            >
               y(x,t) = Σ A_n · sin(nπx/L) · cos(ω_n t)
             </div>
           </div>
 
           <p className="text-zinc-900 dark:text-zinc-300 leading-relaxed">
-            The coefficients A_n are determined by decomposing the initial shape
-            f(x) using Fourier analysis:
+            The values of the specific coefficients A_n are determined by
+            decomposing the specific initial shape f(x) using Fourier analysis:
           </p>
 
-          <div className="bg-zinc-100 dark:bg-zinc-800 p-4 rounded-lg my-4 font-mono text-center" style={{ color: 'var(--text-primary)' }}>
+          <div
+            className="bg-zinc-100 dark:bg-zinc-800 p-4 rounded-lg my-4 font-mono text-center"
+            style={{ color: "var(--text-primary)" }}
+          >
             A_n = (2/L) ∫₀ᴸ f(x) · sin(nπx/L) dx
           </div>
 
           <p className="text-zinc-900 dark:text-zinc-300 leading-relaxed">
-            This is exactly what the simulation above does: it takes your pluck
-            shape, computes the Fourier coefficients for each mode, and then
-            sums up all the modes oscillating at their natural frequencies.
+            And this is exactly what the simulation above does! It takes your
+            pluck shape, computes the Fourier coefficients for each mode, and
+            then sums up all the modes oscillating at their natural frequencies.
           </p>
 
           <div className="bg-zinc-100 dark:bg-zinc-800 p-4 rounded-lg mt-6">
-            <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>
+            <p className="text-sm" style={{ color: "var(--text-secondary)" }}>
               <strong>Try it:</strong> In the simulation, enable &quot;Show
               first 5 modes&quot; to see how the individual harmonics combine.
               Pluck at different positions and watch how the mode amplitudes
@@ -366,8 +437,8 @@ export default function WaveEquationPage() {
               You pluck the string, creating an initial triangular displacement.
             </li>
             <li>
-              The wave equation governs how this shape evolves. Curvature creates
-              restoring forces.
+              The wave equation governs how this shape evolves. Curvature
+              creates restoring forces.
             </li>
             <li>
               Boundary conditions (fixed ends) quantize the allowed wavelengths.

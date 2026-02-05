@@ -7,7 +7,7 @@ export default function IntermodulationPage() {
         Intermodulation Distortion
       </h1>
       <p className="text-zinc-800 dark:text-zinc-400 mb-8">
-        Why power chords sound great but complex chords get muddy through
+        Why power chords sound great but more complex chords sound muddy through
         distortion
       </p>
 
@@ -25,18 +25,23 @@ export default function IntermodulationPage() {
           <p className="text-zinc-900 dark:text-zinc-300 leading-relaxed">
             When two or more frequencies pass through a nonlinear system (like a
             distorted amplifier), the system generates new frequencies that were
-            not present in the input. These new frequencies appear at sums and
-            differences of the original frequencies.
+            not present in the input, specifically at the sums and differences
+            of the original frequencies. This phenomenon is called
+            intermodulation distortion and is present in domains ranging from
+            radio engineering to audio processing.
           </p>
 
           <div className="bg-gradient-to-r from-purple-50 to-orange-50 dark:from-purple-900/20 dark:to-orange-900/20 p-6 rounded-xl my-6 border border-purple-200 dark:border-purple-800">
             <p className="text-center font-mono text-zinc-900 dark:text-zinc-300">
               Input: f₁ and f₂
               <br />
-              <span className="text-sm text-zinc-700 dark:text-zinc-500">↓ nonlinear system ↓</span>
+              <span className="text-sm text-zinc-700 dark:text-zinc-500">
+                ↓ nonlinear system ↓
+              </span>
               <br />
-              Output: f₁, f₂, <span className="text-red-500">(f₂-f₁)</span>,{" "}
-              <span className="text-red-500">(f₁+f₂)</span>, 2f₁, 2f₂,{" "}
+              Output: f₁, f₂, <span className="text-red-500">
+                (f₂-f₁)
+              </span>, <span className="text-red-500">(f₁+f₂)</span>, 2f₁, 2f₂,{" "}
               <span className="text-red-500">(2f₁-f₂)</span>,{" "}
               <span className="text-red-500">(2f₂-f₁)</span>, ...
             </p>
@@ -52,7 +57,7 @@ export default function IntermodulationPage() {
         {/* The Math */}
         <section>
           <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-200 mb-4">
-            Why Nonlinearity Creates New Frequencies
+            The Math: Why Nonlinearity Creates New Frequencies
           </h2>
 
           <p className="text-zinc-900 dark:text-zinc-300 leading-relaxed">
@@ -78,19 +83,19 @@ export default function IntermodulationPage() {
           <p className="text-zinc-900 dark:text-zinc-300 leading-relaxed">
             Higher-order nonlinearities (from stronger clipping) create
             higher-order products: 2f₁±f₂, 2f₂±f₁, 3f₁±f₂, etc. More gain means
-            more intermodulation.
+            more prominent intermodulation tones.
           </p>
         </section>
 
         {/* Power Chords */}
         <section>
           <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-200 mb-4">
-            Why Power Chords Work
+            Why Power Chords Sound So Heavy
           </h2>
 
           <p className="text-zinc-900 dark:text-zinc-300 leading-relaxed">
-            A power chord consists of the root and the fifth. The frequency ratio
-            of a perfect fifth is 3:2 (or 1.5). Let&apos;s call the root f₁.
+            A power chord consists of a root and a fifth. The frequency ratio of
+            a perfect fifth is 3:2 (or 1.5). Let&apos;s call the root f₁.
           </p>
 
           <div className="bg-white dark:bg-zinc-900 rounded-xl p-6 border border-zinc-200 dark:border-zinc-800 my-6">
@@ -101,7 +106,8 @@ export default function IntermodulationPage() {
               <p>Root: f₁ = 100 Hz (example)</p>
               <p>Fifth: f₂ = 150 Hz (1.5 × f₁)</p>
               <p className="pt-2 text-green-600 dark:text-green-400">
-                Difference: f₂ - f₁ = 50 Hz = <strong>one octave below root</strong>
+                Difference: f₂ - f₁ = 50 Hz ={" "}
+                <strong>one octave below root</strong>
               </p>
               <p className="text-green-600 dark:text-green-400">
                 Sum: f₁ + f₂ = 250 Hz = 2.5 × f₁ (major third above octave)
@@ -111,9 +117,10 @@ export default function IntermodulationPage() {
 
           <p className="text-zinc-900 dark:text-zinc-300 leading-relaxed">
             The difference tone (f₂-f₁) is exactly one octave below the root.
-            This is a musically consonant relationship that reinforces the chord,
-            adding bass weight and thickness. The distortion creates a &quot;phantom
-            bass note&quot; that makes power chords sound huge.
+            This is a musically consonant interval that reinforces the
+            fundamental, making it sounds thicker and more powerful. This is
+            like having an octave pedal built into the distortion itself, which
+            is why power chords are so effective at high gain levels!
           </p>
 
           <div className="bg-zinc-100 dark:bg-zinc-800 p-4 rounded-lg">
@@ -128,13 +135,13 @@ export default function IntermodulationPage() {
         {/* Why Complex Chords Get Muddy */}
         <section>
           <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-200 mb-4">
-            Why Full Chords Sound Muddy
+            Why Full Chords Sound Muddy with Distortion
           </h2>
 
           <p className="text-zinc-900 dark:text-zinc-300 leading-relaxed">
             A major chord has three notes: root, major third, and fifth. The
-            major third has a ratio of 5:4 (1.25). Now you have three frequencies
-            generating intermodulation products with each other.
+            major third has a ratio of 5:4 (1.25). Now you have three
+            frequencies generating intermodulation products with each other.
           </p>
 
           <div className="grid md:grid-cols-2 gap-6 my-6">
@@ -174,16 +181,17 @@ export default function IntermodulationPage() {
           </div>
 
           <p className="text-zinc-900 dark:text-zinc-300 leading-relaxed">
-            With three notes, you get intermodulation products between every pair.
-            Many of these fall at non-harmonic frequencies that clash with the
-            chord tones, creating a muddy, indistinct sound.
+            With three notes, you get intermodulation products between every
+            pair. Many of these fall at non-harmonic frequencies that clash with
+            the chord tones, creating a muddy, indistinct sound.
           </p>
         </section>
 
         {/* Practical Implications */}
         <section>
           <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-200 mb-4">
-            Practical Implications
+            Genre Implications: Why Metal Uses Power Chords and Jazz Uses Clean
+            Tones
           </h2>
 
           <div className="space-y-4 my-6">
@@ -245,16 +253,12 @@ export default function IntermodulationPage() {
               below the root, which sounds musical
             </li>
             <li>
-              Complex chords produce many intermodulation products that clash and
-              sound muddy
+              Complex chords produce many intermodulation products that clash
+              and sound muddy
             </li>
             <li>
-              Higher gain means more intermodulation, so heavy distortion demands
-              simpler note choices
-            </li>
-            <li>
-              This is why metal uses power chords and single-note riffs, while
-              jazz uses clean tones for complex harmony
+              Higher gain means more intermodulation, so heavy distortion
+              demands simpler note choices
             </li>
           </ol>
         </section>

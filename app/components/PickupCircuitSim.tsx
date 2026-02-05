@@ -13,6 +13,7 @@ export default function PickupCircuitSim({
   const [inductance, setInductance] = useState(2.5); // Henries
   const [capacitance, setCapacitance] = useState(120); // picoFarads
   const [resistance, setResistance] = useState(6); // kOhms
+  const [includeFaraday, setIncludeFaraday] = useState(false); // Include V_emf ∝ f
 
   // Calculate resonant frequency
   const getResonantFreq = useCallback(() => {
@@ -21,34 +22,35 @@ export default function PickupCircuitSim({
     return 1 / (2 * Math.PI * Math.sqrt(L * C));
   }, [inductance, capacitance]);
 
-  // Calculate frequency response (transfer function magnitude)
-  // Models pickup as voltage source with series R,L and parallel C driving high-Z load
+  // Calculate transfer function magnitude |H(jω)|
+  // Models pickup as voltage source with series R,L and parallel C
+  // H(jω) = 1 / (1 - ω²LC + jωRC)
+  // Optionally includes Faraday's law factor (V_emf ∝ f)
   const getFrequencyResponse = useCallback(
     (f: number) => {
       const L = inductance;
       const C = capacitance * 1e-12;
       const R = resistance * 1000;
 
-      // For a parallel RLC driven by current source (or series RLC voltage divider)
-      // The response peaks at resonance
-      // Using simplified model: H(f) ∝ f / sqrt((f₀² - f²)² + (f·f₀/Q)²)
       const f0 = getResonantFreq();
       const Q = (1 / R) * Math.sqrt(L / C); // Quality factor
 
-      // Magnitude response normalized
-      // At low freq: rises with f (the V ∝ f from Faraday's law)
-      // At resonance: peaks
-      // At high freq: rolls off
-
+      // |H(jω)| = 1 / √((1 - ω²LC)² + (ωRC)²)
+      // In normalized form: 1 / √((1 - fNorm²)² + (fNorm/Q)²)
       const fNorm = f / f0;
       const denominator = Math.sqrt(
         Math.pow(1 - fNorm * fNorm, 2) + Math.pow(fNorm / Q, 2)
       );
 
-      // Include the f factor from Faraday's law (V_emf ∝ f)
-      return (f / 1000) / denominator;
+      const transferFn = 1 / denominator;
+
+      // If including Faraday's law, multiply by f (normalized to 1kHz for scaling)
+      if (includeFaraday) {
+        return transferFn * (f / 1000);
+      }
+      return transferFn;
     },
-    [inductance, capacitance, resistance, getResonantFreq]
+    [inductance, capacitance, resistance, includeFaraday, getResonantFreq]
   );
 
   useEffect(() => {
@@ -58,20 +60,14 @@ export default function PickupCircuitSim({
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    const resize = () => {
+    const draw = () => {
       const dpr = window.devicePixelRatio || 1;
       const rect = canvas.getBoundingClientRect();
       canvas.width = rect.width * dpr;
       canvas.height = rect.height * dpr;
       ctx.setTransform(1, 0, 0, 1, 0, 0);
       ctx.scale(dpr, dpr);
-    };
 
-    resize();
-    window.addEventListener("resize", resize);
-
-    const draw = () => {
-      const rect = canvas.getBoundingClientRect();
       const width = rect.width;
       const height = rect.height;
 
@@ -252,7 +248,10 @@ export default function PickupCircuitSim({
       ctx.fillStyle = "#3f3f46";
       ctx.font = "12px system-ui";
       ctx.textAlign = "center";
-      ctx.fillText("Frequency Response", plotX + plotWidth / 2, 20);
+      const plotTitle = includeFaraday
+        ? "Output: |V_out| ∝ f·|H(jω)|"
+        : "Transfer Function |H(jω)|";
+      ctx.fillText(plotTitle, plotX + plotWidth / 2, 20);
 
       // Axes
       ctx.strokeStyle = "#52525b";
@@ -292,17 +291,10 @@ export default function PickupCircuitSim({
       ctx.translate(plotLeft - 25, plotTop + plotH / 2);
       ctx.rotate(-Math.PI / 2);
       ctx.textAlign = "center";
-      ctx.fillText("Output Level (dB)", 0, 0);
+      ctx.fillText("|H| (dB)", 0, 0);
       ctx.restore();
 
-      // Calculate max response for normalization
-      let maxResponse = 0;
-      for (let f = 100; f <= 20000; f *= 1.1) {
-        const resp = getFrequencyResponse(f);
-        if (resp > maxResponse) maxResponse = resp;
-      }
-
-      // Plot the frequency response
+      // Plot the frequency response (absolute magnitude)
       const gradient = ctx.createLinearGradient(plotLeft, 0, plotRight, 0);
       gradient.addColorStop(0, "#7c3aed");
       gradient.addColorStop(1, "#f97316");
@@ -310,15 +302,20 @@ export default function PickupCircuitSim({
       ctx.lineWidth = 2.5;
       ctx.beginPath();
 
+      // Y-axis scale: -10 dB to +40 dB (50 dB range)
+      const dbMin = -10;
+      const dbMax = 40;
+      const dbRange = dbMax - dbMin;
+
       let firstPoint = true;
       for (let logF = minLogF; logF <= maxLogF; logF += 0.02) {
         const f = Math.pow(10, logF);
         const response = getFrequencyResponse(f);
-        const dB = 20 * Math.log10(response / maxResponse + 0.001);
-        const clampedDB = Math.max(-30, Math.min(6, dB));
+        const dB = 20 * Math.log10(response);
+        const clampedDB = Math.max(dbMin, Math.min(dbMax, dB));
 
         const x = plotLeft + ((logF - minLogF) / (maxLogF - minLogF)) * plotW;
-        const y = plotTop + ((6 - clampedDB) / 36) * plotH;
+        const y = plotTop + ((dbMax - clampedDB) / dbRange) * plotH;
 
         if (firstPoint) {
           ctx.moveTo(x, y);
@@ -350,9 +347,9 @@ export default function PickupCircuitSim({
       // Y-axis dB labels
       ctx.fillStyle = "#3f3f46";
       ctx.textAlign = "right";
-      const dbLabels = [0, -10, -20, -30];
+      const dbLabels = [40, 30, 20, 10, 0, -10];
       dbLabels.forEach((db) => {
-        const y = plotTop + ((6 - db) / 36) * plotH;
+        const y = plotTop + ((dbMax - db) / dbRange) * plotH;
         ctx.fillText(`${db}`, plotLeft - 5, y + 4);
 
         ctx.strokeStyle = "#e4e4e7";
@@ -363,23 +360,30 @@ export default function PickupCircuitSim({
       });
 
       // Annotations
-      ctx.fillStyle = "#22c55e";
       ctx.font = "10px system-ui";
-      ctx.textAlign = "left";
-      const annX = plotLeft + 10;
-      ctx.fillText("↑ Rising: V ∝ f", annX, plotTop + 20);
+
+      if (includeFaraday) {
+        ctx.fillStyle = "#22c55e";
+        ctx.textAlign = "left";
+        ctx.fillText("↑ V ∝ f (Faraday)", plotLeft + 10, plotTop + 20);
+      }
+
+      ctx.fillStyle = "#7c3aed";
+      ctx.textAlign = "center";
+      ctx.fillText("Peak at f₀", f0LogPos, plotBottom - 10);
 
       ctx.fillStyle = "#ef4444";
       ctx.textAlign = "right";
-      ctx.fillText("Rolloff: LC filter ↓", plotRight - 10, plotTop + 20);
+      ctx.fillText("LC rolloff ↓", plotRight - 10, plotTop + 20);
     };
 
     draw();
+    window.addEventListener("resize", draw);
 
     return () => {
-      window.removeEventListener("resize", resize);
+      window.removeEventListener("resize", draw);
     };
-  }, [inductance, capacitance, resistance, getResonantFreq, getFrequencyResponse]);
+  }, [inductance, capacitance, resistance, includeFaraday, getResonantFreq, getFrequencyResponse]);
 
   return (
     <div className={className}>
@@ -438,9 +442,22 @@ export default function PickupCircuitSim({
             </label>
           </div>
 
+          <label className="flex items-center gap-2 text-sm text-zinc-800 dark:text-zinc-400">
+            <input
+              type="checkbox"
+              checked={includeFaraday}
+              onChange={(e) => setIncludeFaraday(e.target.checked)}
+              className="w-4 h-4 rounded border-zinc-300 dark:border-zinc-600"
+            />
+            <span>
+              Include Faraday&apos;s law (V<sub>emf</sub> ∝ f) — shows actual
+              pickup output
+            </span>
+          </label>
+
           <p className="text-sm text-zinc-700 dark:text-zinc-500">
             Try increasing L or C to see the resonant peak shift lower (darker tone).
-            Higher R (more windings) also affects the peak shape.
+            Higher R reduces the peak height (lower Q).
           </p>
         </div>
       </div>

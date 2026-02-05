@@ -7,7 +7,8 @@ export default function EqualTemperamentPage() {
         Equal Temperament
       </h1>
       <p className="text-zinc-800 dark:text-zinc-400 mb-8">
-        Why guitars have straight frets and what we gave up to get them
+        Why guitars have straight frets, and how the 12-tone equal temperament
+        system allows us to play in any key at the cost of perfect consonance
       </p>
 
       {/* Interactive Simulation */}
@@ -18,22 +19,22 @@ export default function EqualTemperamentPage() {
         {/* Just Intonation */}
         <section>
           <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-200 mb-4">
-            The Natural Sound: Just Intonation
+            Just Intonation and Consonant Ratios
           </h2>
 
           <p className="text-zinc-900 dark:text-zinc-300 leading-relaxed">
-            When you pluck a string, it vibrates not just at its fundamental
-            frequency, but at integer multiples: 2×, 3×, 4×, and so on. These
-            are the <strong>harmonics</strong> or <strong>overtones</strong>.
+            When we pluck a string, it vibrates at both its fundamental
+            frequency and at integer multiples: 2×, 3×, 4×, etc. These are the{" "}
+            <strong>harmonics</strong> or <strong>overtones</strong>.
           </p>
 
           <p className="text-zinc-900 dark:text-zinc-300 leading-relaxed mt-4">
-            <strong>Just intonation</strong> builds musical intervals from these
-            natural ratios. When two notes have frequencies in simple ratios,
-            their harmonics align and they sound consonant. The simpler the
-            ratio, the more consonant the interval: 2:1 (octave) sounds more
-            resolved than 3:2 (fifth), which sounds more resolved than 5:4
-            (major third).
+            <strong>Just intonation</strong> systems build the intervals of a
+            scale from these natural ratios. When two notes have frequencies in
+            simple ratios, their harmonics align and they sound consonant to the
+            human ear. The simpler the ratio, the more consonant the interval:
+            2:1 (octave) sounds more resolved than 3:2 (fifth), which sounds
+            more "resolved" than 5:4 (major third).
           </p>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 my-6">
@@ -73,8 +74,8 @@ export default function EqualTemperamentPage() {
 
           <div className="bg-gradient-to-r from-purple-50 to-orange-50 dark:from-purple-900/20 dark:to-orange-900/20 p-6 rounded-xl my-6 border border-purple-200 dark:border-purple-800">
             <p className="text-center text-zinc-900 dark:text-zinc-300 font-medium">
-              Just intonation sounds <em>perfectly</em> in tune. Harmonics align
-              exactly, creating the purest consonance possible.
+              In a just intonation system, the intervals are perfectly
+              consonant, but only in one key.
             </p>
           </div>
         </section>
@@ -82,18 +83,26 @@ export default function EqualTemperamentPage() {
         {/* The Problem */}
         <section>
           <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-200 mb-4">
-            The Problem: You Can&apos;t Have It All
+            The Problem with Just Intonation
           </h2>
 
           <p className="text-zinc-900 dark:text-zinc-300 leading-relaxed">
-            Here&apos;s the catch: if you tune a piano (or set guitar frets)
-            using just intonation in the key of C, the intervals in other keys
-            will be <em>wrong</em>.
+            If you tune a piano (or set guitar frets) using just intonation in,
+            e.g., the key of C, the intervals in other keys will be{" "}
+            <em>wrong</em>.
+          </p>
+
+          <p className="text-zinc-900 dark:text-zinc-300 leading-relaxed mt-4">
+            For example, in C-based just intonation, D is tuned as 9/8 of C, and
+            A as 5/3 of C. The D-to-A interval is (5/3)÷(9/8) = 40/27 ≈ 1.481,
+            but a pure fifth is 3/2 = 1.5. That D-A "power chord" interval
+            &quot;fifth&quot; is 22 cents flat. This is enough to sound
+            noticeably sour!
           </p>
 
           <div className="bg-red-50 dark:bg-red-900/20 p-6 rounded-xl my-6 border border-red-200 dark:border-red-800">
             <h3 className="text-lg font-semibold text-red-700 dark:text-red-400 mb-3">
-              The Circle of Fifths Doesn&apos;t Close
+              The Circle of Fifths Doesn&apos;t "Close"
             </h3>
             <p className="text-zinc-900 dark:text-zinc-300 mb-3">
               Stack 12 perfect fifths (3:2 ratio each):
@@ -119,15 +128,15 @@ export default function EqualTemperamentPage() {
 
           <p className="text-zinc-900 dark:text-zinc-300 leading-relaxed">
             This means if you tune by pure fifths starting from C, by the time
-            you get back to C (via B♯), you&apos;ll be noticeably sharp. Some
-            interval somewhere has to absorb this error.
+            you get back to C (via B♯), you&apos;ll be noticeably sharp. How do
+            we solve this problem?
           </p>
         </section>
 
         {/* The Solution */}
         <section>
           <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-200 mb-4">
-            The Solution: Distribute the Pain
+            The Solution: Equally Distributed Errors
           </h2>
 
           <p className="text-zinc-900 dark:text-zinc-300 leading-relaxed">
@@ -155,7 +164,7 @@ export default function EqualTemperamentPage() {
           <div className="grid md:grid-cols-2 gap-6 my-6">
             <div className="bg-green-50 dark:bg-green-900/20 rounded-xl p-6 border border-green-200 dark:border-green-800">
               <h3 className="text-lg font-semibold text-green-700 dark:text-green-400 mb-2">
-                What We Gained
+                Benefits of Equal Temperament
               </h3>
               <ul className="list-disc pl-6 space-y-1 text-zinc-800 dark:text-zinc-400 text-sm">
                 <li>Modulate freely between any keys</li>
@@ -166,7 +175,7 @@ export default function EqualTemperamentPage() {
             </div>
             <div className="bg-yellow-50 dark:bg-yellow-900/20 rounded-xl p-6 border border-yellow-200 dark:border-yellow-800">
               <h3 className="text-lg font-semibold text-yellow-700 dark:text-yellow-400 mb-2">
-                What We Lost
+                Drawbacks of Equal Temperament
               </h3>
               <ul className="list-disc pl-6 space-y-1 text-zinc-800 dark:text-zinc-400 text-sm">
                 <li>Major 3rds are 14 cents sharp</li>
@@ -181,7 +190,7 @@ export default function EqualTemperamentPage() {
         {/* Fret Placement */}
         <section>
           <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-200 mb-4">
-            Why Guitar Frets Are Straight
+            Guitar Fret Placement
           </h2>
 
           <p className="text-zinc-900 dark:text-zinc-300 leading-relaxed">
@@ -208,43 +217,6 @@ export default function EqualTemperamentPage() {
             you&apos;re playing, all six strings can share the same fret
             positions.
           </p>
-
-          <div className="bg-gradient-to-r from-purple-50 to-orange-50 dark:from-purple-900/20 dark:to-orange-900/20 p-6 rounded-xl my-6 border border-purple-200 dark:border-purple-800">
-            <p className="text-center text-zinc-900 dark:text-zinc-300 font-medium">
-              Straight frets are only possible because equal temperament uses
-              the same ratio for every semitone. Just intonation would require
-              different fret positions for each string!
-            </p>
-          </div>
-        </section>
-
-        {/* The 12th Fret */}
-        <section>
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-200 mb-4">
-            The 12th Fret: Proof It Works
-          </h2>
-
-          <p className="text-zinc-900 dark:text-zinc-300 leading-relaxed">
-            At the 12th fret:
-          </p>
-
-          <div className="bg-zinc-100 dark:bg-zinc-800 p-4 rounded-lg my-4 font-mono text-center">
-            2^(12/12) = 2¹ = 2
-          </div>
-
-          <p className="text-zinc-900 dark:text-zinc-300 leading-relaxed">
-            This means the frequency exactly doubles, a perfect octave. The 12th
-            fret is exactly halfway between the nut and bridge.
-          </p>
-
-          <div className="bg-zinc-100 dark:bg-zinc-800 p-4 rounded-lg">
-            <p className="text-sm text-zinc-800 dark:text-zinc-400">
-              <strong>Try it:</strong> Play the 12th fret harmonic (lightly
-              touch the string at the 12th fret and pluck). It should sound
-              exactly the same pitch as the fretted note. Both are one octave
-              above the open string.
-            </p>
-          </div>
         </section>
 
         {/* Cents */}
@@ -254,9 +226,8 @@ export default function EqualTemperamentPage() {
           </h2>
 
           <p className="text-zinc-900 dark:text-zinc-300 leading-relaxed">
-            Musicians measure small pitch differences in{" "}
-            <strong>cents</strong>. One semitone = 100 cents, so one octave =
-            1200 cents.
+            Musicians measure small pitch differences in <strong>cents</strong>.
+            One semitone = 100 cents, so one octave = 1200 cents.
           </p>
 
           <div className="bg-zinc-100 dark:bg-zinc-800 p-4 rounded-lg my-4 font-mono text-center">
@@ -353,12 +324,8 @@ export default function EqualTemperamentPage() {
               keys equally usable
             </li>
             <li>
-              Guitar frets can be straight because every string uses the same
-              semitone ratio
-            </li>
-            <li>
-              The 12th fret is exactly half the scale length, producing a
-              perfect octave
+              Guitar frets are placed according to the equal temperament
+              formula, allowing straight frets to work for all strings and keys
             </li>
           </ol>
         </section>

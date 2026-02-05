@@ -23,11 +23,11 @@ export default function TubePreampPage() {
           </h2>
 
           <p className="text-zinc-900 dark:text-zinc-300 leading-relaxed">
-            A preamplifier is responsible for increasing the signal size (voltage
-            gain) so that it can be passed to the power amplifier. Your guitar&apos;s
-            pickups produce a very small signal, typically only a few hundred
-            millivolts. The preamp boosts this to several volts, shaping the tone
-            along the way.
+            A preamplifier is responsible for increasing the signal size
+            (voltage gain) so that it can be passed to the power amplifier. Your
+            guitar&apos;s pickups produce a very small signal, typically only a
+            few hundred millivolts. The preamp boosts this to several volts,
+            shaping the tone along the way.
           </p>
 
           <div className="bg-gradient-to-r from-purple-50 to-orange-50 dark:from-purple-900/20 dark:to-orange-900/20 p-6 rounded-xl my-6 border border-purple-200 dark:border-purple-800">
@@ -44,7 +44,6 @@ export default function TubePreampPage() {
             decades.
           </p>
         </section>
-
         {/* Tubes vs Solid State */}
         <section>
           <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-200 mb-4">
@@ -87,7 +86,6 @@ export default function TubePreampPage() {
             fidelity, blurring the lines between the technologies.
           </p>
         </section>
-
         {/* How Tubes Work */}
         <section>
           <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-200 mb-4">
@@ -95,9 +93,9 @@ export default function TubePreampPage() {
           </h2>
 
           <p className="text-zinc-900 dark:text-zinc-300 leading-relaxed mb-4">
-            A vacuum tube (or &quot;valve&quot; in British English) is essentially a
-            tiny particle accelerator. It controls the flow of electrons through
-            a vacuum using electric fields.
+            A vacuum tube (or &quot;valve&quot; in British English) is
+            essentially a tiny particle accelerator. It controls the flow of
+            electrons through a vacuum using electric fields.
           </p>
 
           <div className="space-y-4 my-6">
@@ -110,9 +108,10 @@ export default function TubePreampPage() {
                   The Cathode
                 </h3>
                 <p className="text-zinc-800 dark:text-zinc-400 text-sm">
-                  A metal element heated by a filament. The heat causes electrons
-                  to &quot;boil off&quot; the surface through thermionic emission.
-                  This is the source of free electrons in the tube.
+                  A metal element heated by a filament. The heat causes
+                  electrons to &quot;boil off&quot; the surface through
+                  thermionic emission. This is the source of free electrons in
+                  the tube.
                 </p>
               </div>
             </div>
@@ -146,7 +145,8 @@ export default function TubePreampPage() {
                   A wire mesh positioned between the cathode and plate. By
                   applying a voltage to this grid, you can control the electron
                   flow. A negative voltage repels electrons, reducing plate
-                  current. A less negative voltage allows more electrons through.
+                  current. A less negative voltage allows more electrons
+                  through.
                 </p>
               </div>
             </div>
@@ -155,12 +155,12 @@ export default function TubePreampPage() {
           <div className="bg-zinc-100 dark:bg-zinc-800 p-4 rounded-lg">
             <p className="text-sm text-zinc-800 dark:text-zinc-400">
               <strong>The key insight:</strong> A small voltage change on the
-              grid causes a large change in plate current. This is amplification.
-              A tiny input signal controls a much larger output signal.
+              grid causes a large change in plate current. This is
+              amplification. A tiny input signal controls a much larger output
+              signal.
             </p>
           </div>
         </section>
-
         {/* How Amplification Works */}
         <section>
           <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-200 mb-4">
@@ -187,19 +187,18 @@ export default function TubePreampPage() {
               this creates a varying voltage, which is your amplified signal.
             </li>
             <li>
-              <strong>Phase inversion:</strong> When the grid goes more positive,
-              more current flows, causing a larger voltage drop across Ra. This
-              means the output voltage goes <em>down</em>. The output is inverted
-              (180° out of phase) from the input.
+              <strong>Phase inversion:</strong> When the grid goes more
+              positive, more current flows, causing a larger voltage drop across
+              Ra. This means the output voltage goes <em>down</em>. The output
+              is inverted (180° out of phase) from the input.
             </li>
             <li>
-              <strong>Output coupling:</strong> Another capacitor (C2) blocks the
-              high DC plate voltage while passing the amplified audio signal to
-              the next stage.
+              <strong>Output coupling:</strong> Another capacitor (C2) blocks
+              the high DC plate voltage while passing the amplified audio signal
+              to the next stage.
             </li>
           </ol>
         </section>
-
         {/* Cathode Bias */}
         <section>
           <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-200 mb-4">
@@ -215,20 +214,20 @@ export default function TubePreampPage() {
 
           <div className="bg-gradient-to-r from-purple-50 to-orange-50 dark:from-purple-900/20 dark:to-orange-900/20 p-6 rounded-xl my-6 border border-purple-200 dark:border-purple-800">
             <p className="text-center text-zinc-900 dark:text-zinc-300">
-              Since the grid is referenced to ground, and the cathode is positive,
-              the grid is effectively <strong>negative relative to the cathode</strong>.
+              Since the grid is referenced to ground, and the cathode is
+              positive, the grid is effectively{" "}
+              <strong>negative relative to the cathode</strong>.
             </p>
           </div>
 
           <p className="text-zinc-900 dark:text-zinc-300 leading-relaxed">
             This negative bias is essential. Without it, the tube would conduct
-            too much current at rest, wasting power and potentially damaging itself.
-            The bypass capacitor (Ck) allows the AC signal to pass around the
-            resistor, preventing gain reduction at audio frequencies.
+            too much current at rest, wasting power and potentially damaging
+            itself. The bypass capacitor (Ck) allows the AC signal to pass
+            around the resistor, preventing gain reduction at audio frequencies.
           </p>
         </section>
-
-        {/* Common Tubes */}
+        {/* Common Tubes
         <section>
           <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-200 mb-4">
             Common Preamp Tubes
@@ -255,7 +254,8 @@ export default function TubePreampPage() {
               </h3>
               <p className="text-zinc-800 dark:text-zinc-400 text-sm mb-2">
                 Lower gain (~60) but higher current capability. Often used in
-                reverb drivers and phase inverter stages. Cleaner, more headroom.
+                reverb drivers and phase inverter stages. Cleaner, more
+                headroom.
               </p>
               <p className="text-zinc-700 dark:text-zinc-500 text-xs">
                 Used in: Reverb circuits, hi-fi equipment, phase inverters
@@ -267,8 +267,9 @@ export default function TubePreampPage() {
                 12AU7 (ECC82)
               </h3>
               <p className="text-zinc-800 dark:text-zinc-400 text-sm mb-2">
-                Even lower gain (~20), high current. Used where clean amplification
-                is needed without adding distortion. Common in hi-fi and effects loops.
+                Even lower gain (~20), high current. Used where clean
+                amplification is needed without adding distortion. Common in
+                hi-fi and effects loops.
               </p>
               <p className="text-zinc-700 dark:text-zinc-500 text-xs">
                 Used in: Effects loops, clean preamp stages, hi-fi audio
@@ -289,12 +290,11 @@ export default function TubePreampPage() {
               </p>
             </div>
           </div>
-        </section>
-
+        </section> */}
         {/* Why Tubes Sound Different */}
         <section>
           <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-200 mb-4">
-            Why Tubes &quot;Sound Better&quot;
+            Why Tubes Have a Characteristic Sound
           </h2>
 
           <p className="text-zinc-900 dark:text-zinc-300 leading-relaxed mb-4">
@@ -322,9 +322,9 @@ export default function TubePreampPage() {
                   Even harmonics
                 </h3>
                 <p className="text-zinc-800 dark:text-zinc-400 text-sm">
-                  The asymmetric transfer curve of tubes generates even harmonics
-                  (2nd, 4th, 6th) which are musically consonant, adding warmth
-                  and richness.
+                  The asymmetric transfer curve of tubes generates even
+                  harmonics (2nd, 4th, 6th) which are musically consonant,
+                  adding warmth and richness.
                 </p>
               </div>
             </div>
@@ -337,8 +337,9 @@ export default function TubePreampPage() {
                 </h3>
                 <p className="text-zinc-800 dark:text-zinc-400 text-sm">
                   Tubes respond differently to soft and hard playing. Play
-                  lightly for clean tones, dig in for more drive. This &quot;touch
-                  sensitivity&quot; is highly prized by players.
+                  lightly for clean tones, dig in for more drive. This
+                  &quot;touch sensitivity&quot; is something guitarists love
+                  about tube amps.
                 </p>
               </div>
             </div>
@@ -347,7 +348,7 @@ export default function TubePreampPage() {
               <div className="w-3 h-3 rounded-full bg-purple-600 mt-1.5 flex-shrink-0" />
               <div>
                 <h3 className="font-semibold text-zinc-900 dark:text-zinc-200">
-                  Natural compression
+                  Natural dynamic range compression
                 </h3>
                 <p className="text-zinc-800 dark:text-zinc-400 text-sm">
                   As the tube saturates, loud signals are compressed while quiet
@@ -358,7 +359,6 @@ export default function TubePreampPage() {
             </div>
           </div>
         </section>
-
         {/* Summary */}
         <section className="bg-gradient-to-br from-purple-100 to-orange-100 dark:from-purple-900/30 dark:to-orange-900/30 p-6 rounded-xl border border-purple-200 dark:border-purple-800">
           <h2 className="text-xl font-bold text-zinc-900 dark:text-zinc-200 mb-4">
@@ -366,7 +366,8 @@ export default function TubePreampPage() {
           </h2>
           <ol className="list-decimal pl-6 space-y-2 text-zinc-900 dark:text-zinc-300">
             <li>
-              A preamp increases signal voltage so it can drive a power amplifier
+              A preamp increases signal voltage so it can drive a power
+              amplifier
             </li>
             <li>
               Vacuum tubes are electron accelerators: heated cathode emits

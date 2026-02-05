@@ -27,9 +27,9 @@ export default function GainSimulationPage() {
                 Gain
               </h3>
               <p className="text-zinc-900 dark:text-zinc-300">
-                When a circuit makes a signal larger in amplitude. In most guitar
-                circuits, this means higher voltage. A gain of 2x doubles the
-                signal amplitude; a gain of 10x increases it tenfold.
+                When a circuit makes a signal larger in amplitude. In most
+                guitar circuits, this means higher voltage. A gain of 2x doubles
+                the signal amplitude; a gain of 10x increases it tenfold.
               </p>
             </div>
 
@@ -40,8 +40,9 @@ export default function GainSimulationPage() {
               <p className="text-zinc-900 dark:text-zinc-300">
                 When a waveform gains new frequency components after passing
                 through a circuit. In other words, the waveform changes shape.
-                Distortion often occurs when circuits are operated with high gain,
-                pushing the signal beyond what the circuit can cleanly reproduce.
+                Distortion often occurs when circuits are operated with high
+                gain, pushing the signal beyond what the circuit can cleanly
+                reproduce.
               </p>
             </div>
 
@@ -51,11 +52,22 @@ export default function GainSimulationPage() {
               </h3>
               <p className="text-zinc-900 dark:text-zinc-300">
                 A system is nonlinear when it behaves differently for a sum of
-                waves than it does for each individual wave. If you put in wave A
-                and get output X, and put in wave B and get output Y, a linear
+                waves than it does for each individual wave. If you put in wave
+                A and get output X, and put in wave B and get output Y, a linear
                 system would give you X+Y when you input A+B. A nonlinear system
                 gives you something else entirely. Distortion is the audible
                 result of nonlinearity.
+              </p>
+            </div>
+
+            <div className="bg-red-50 dark:bg-yellow-400/20 p-6 rounded-xl border border-red-200 dark:border-red-800">
+              <h3 className="text-lg font-semibold text-red-700 dark:text-red-400 mb-2">
+                Dynamic Range Compression
+              </h3>
+              <p className="text-zinc-900 dark:text-zinc-300">
+                When the difference in volume between quiet and loud parts of a
+                signal is reduced. Distortion often compresses the dynamic range
+                because the clipped peaks are all at the same maximum level.
               </p>
             </div>
           </div>
@@ -94,8 +106,8 @@ export default function GainSimulationPage() {
                 Soft Clipping
               </h3>
               <p className="text-zinc-800 dark:text-zinc-400 text-sm mb-3">
-                The signal is gradually compressed as it approaches the threshold.
-                Characteristic of vacuum tube amplifiers.
+                The signal is gradually compressed as it approaches the
+                threshold. Characteristic of vacuum tube amplifiers.
               </p>
               <ul className="list-disc pl-5 space-y-1 text-zinc-800 dark:text-zinc-400 text-sm">
                 <li>Creates a rounded waveform</li>
@@ -133,11 +145,13 @@ export default function GainSimulationPage() {
                 Symmetric Clipping
               </h3>
               <p className="text-zinc-800 dark:text-zinc-400 text-sm mb-3">
-                Both positive and negative peaks are clipped at the same threshold.
-                The waveform retains its odd symmetry.
+                Both positive and negative peaks are clipped at the same
+                threshold. The waveform retains its odd symmetry.
               </p>
               <ul className="list-disc pl-5 space-y-1 text-zinc-800 dark:text-zinc-400 text-sm">
-                <li>Produces only <strong>odd harmonics</strong> (3f, 5f, 7f...)</li>
+                <li>
+                  Produces only <strong>odd harmonics</strong> (3f, 5f, 7f...)
+                </li>
                 <li>Even harmonics (2f, 4f...) remain at zero</li>
                 <li>Common in most distortion pedals</li>
                 <li>Characteristic &quot;buzzsaw&quot; tone</li>
@@ -152,26 +166,26 @@ export default function GainSimulationPage() {
                 waveform loses its odd symmetry.
               </p>
               <ul className="list-disc pl-5 space-y-1 text-zinc-800 dark:text-zinc-400 text-sm">
-                <li>Produces <strong>both odd and even harmonics</strong></li>
-                <li>Even harmonics add &quot;warmth&quot; and octave content</li>
-                <li>Common in tube amps (different behavior for each half-cycle)</li>
+                <li>
+                  Produces <strong>both odd and even harmonics</strong>
+                </li>
+                <li>
+                  Even harmonics add &quot;warmth&quot; and octave content
+                </li>
+                <li>
+                  Common in tube amps (different behavior for each half-cycle)
+                </li>
                 <li>Often perceived as more &quot;musical&quot;</li>
               </ul>
             </div>
           </div>
 
-          <div className="bg-gradient-to-r from-purple-50 to-orange-50 dark:from-purple-900/20 dark:to-orange-900/20 p-6 rounded-xl my-6 border border-purple-200 dark:border-purple-800">
-            <p className="text-center text-zinc-900 dark:text-zinc-300 font-medium">
-              A waveform with odd symmetry (f(-t) = -f(t)) contains only odd
-              harmonics. Breaking this symmetry introduces even harmonics.
-            </p>
-          </div>
-
           <div className="bg-zinc-100 dark:bg-zinc-800 p-4 rounded-lg">
             <p className="text-sm text-zinc-800 dark:text-zinc-400">
               <strong>Try it:</strong> In the simulation above, toggle
-              &quot;Asymmetric clipping&quot; and watch the even harmonics (2f, 4f)
-              appear in green. Notice how the output waveform becomes lopsided.
+              &quot;Asymmetric clipping&quot; and watch the even harmonics (2f,
+              4f) appear in green. Notice how the output waveform becomes
+              lopsided.
             </p>
           </div>
         </section>
@@ -184,8 +198,8 @@ export default function GainSimulationPage() {
 
           <p className="text-zinc-900 dark:text-zinc-300 leading-relaxed mb-4">
             Early guitar amplifiers were designed to be linear, producing a
-            &quot;clean&quot; sound that faithfully reproduced the guitar signal.
-            Distortion was considered a flaw.
+            &quot;clean&quot; sound that faithfully reproduced the guitar
+            signal. Distortion was considered a flaw.
           </p>
 
           <div className="space-y-4">
@@ -194,9 +208,9 @@ export default function GainSimulationPage() {
                 1940s
               </div>
               <p className="text-zinc-800 dark:text-zinc-400 text-sm">
-                Blues players occasionally recorded with damaged amps and speakers,
-                getting a distorted &quot;fuzzy&quot; guitar tone that added grit
-                and emotion to their playing.
+                Blues players occasionally recorded with damaged amps and
+                speakers, getting a distorted &quot;fuzzy&quot; guitar tone that
+                added grit and emotion to their playing.
               </p>
             </div>
 
@@ -205,9 +219,9 @@ export default function GainSimulationPage() {
                 1950s
               </div>
               <p className="text-zinc-800 dark:text-zinc-400 text-sm">
-                Rock and blues players found reliable ways to produce these tones
-                through amp modifications and intentional overdriving. The sound
-                became associated with rawness and power.
+                Rock and blues players found reliable ways to produce these
+                tones through amp modifications and intentional overdriving. The
+                sound became associated with rawness and power.
               </p>
             </div>
 
@@ -227,8 +241,9 @@ export default function GainSimulationPage() {
                 Today
               </div>
               <p className="text-zinc-800 dark:text-zinc-400 text-sm">
-                Myriad forms of distortion-inducing equipment have been developed.
-                Distortion is now the norm for metal, rock, and blues guitar.
+                Myriad forms of distortion-inducing equipment have been
+                developed. Distortion is now the norm for metal, rock, and blues
+                guitar.
               </p>
             </div>
           </div>
@@ -241,8 +256,8 @@ export default function GainSimulationPage() {
           </h2>
 
           <p className="text-zinc-900 dark:text-zinc-300 leading-relaxed mb-4">
-            Beyond its characteristic sound, distortion enables playing techniques
-            that would not work on a clean amp:
+            Beyond its characteristic sound, distortion enables playing
+            techniques that would not work on a clean amp:
           </p>
 
           <div className="grid md:grid-cols-2 gap-6 my-6">
@@ -262,9 +277,9 @@ export default function GainSimulationPage() {
                 Palm Mutes
               </h3>
               <p className="text-zinc-800 dark:text-zinc-400 text-sm">
-                The muted, percussive tone is very quiet. Compression brings it up
-                to full volume while adding harmonic content that gives it chunk
-                and definition.
+                The muted, percussive tone is very quiet. Compression brings it
+                up to full volume while adding harmonic content that gives it
+                chunk and definition.
               </p>
             </div>
 
@@ -302,12 +317,12 @@ export default function GainSimulationPage() {
               Gain amplifies signal amplitude; distortion adds new frequencies
             </li>
             <li>
-              Distortion occurs when gain pushes the signal past what the circuit
-              can cleanly reproduce (clipping)
+              Distortion occurs when gain pushes the signal past what the
+              circuit can cleanly reproduce (clipping)
             </li>
             <li>
-              Hard clipping creates aggressive tones; soft clipping creates warmer
-              tones
+              Hard clipping creates aggressive tones; soft clipping creates
+              warmer tones
             </li>
             <li>
               Nonlinearity means the system treats combined signals differently

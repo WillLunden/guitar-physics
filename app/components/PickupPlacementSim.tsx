@@ -23,10 +23,12 @@ export default function PickupPlacementSim({
   const [pickupPosition, setPickupPosition] = useState(0.85); // 0-1 normalized
   const [isDragging, setIsDragging] = useState(false);
   const [hasPlucked, setHasPlucked] = useState(false);
+  const [speed, setSpeed] = useState(1); // Speed multiplier
 
   const isPlayingRef = useRef(isPlaying);
   const pickupPositionRef = useRef(pickupPosition);
   const isDraggingRef = useRef(false);
+  const speedRef = useRef(speed);
 
   useEffect(() => {
     isPlayingRef.current = isPlaying;
@@ -35,6 +37,10 @@ export default function PickupPlacementSim({
   useEffect(() => {
     pickupPositionRef.current = pickupPosition;
   }, [pickupPosition]);
+
+  useEffect(() => {
+    speedRef.current = speed;
+  }, [speed]);
 
   // Get x points
   const getXPoints = useCallback(() => {
@@ -82,15 +88,6 @@ export default function PickupPlacementSim({
     },
     [getXPoints]
   );
-
-  // Calculate mode sensitivity at pickup position
-  // This is the derivative of the mode shape (velocity sensitivity)
-  const getModeSensitivity = useCallback((n: number, pickupX: number) => {
-    // Mode shape: sin(nπx/L)
-    // Derivative: (nπ/L) * cos(nπx/L)
-    // The pickup sees velocity, which is proportional to this derivative
-    return Math.abs(Math.sin((n * Math.PI * pickupX) / L));
-  }, []);
 
   // Calculate velocity at pickup position
   const getVelocityAtPickup = useCallback(
@@ -242,10 +239,9 @@ export default function PickupPlacementSim({
       const pickupX = pickupPositionRef.current * L;
       const amplitudes = decompose(initialShapeRef.current);
 
-      // Layout: String (35%), Mode sensitivity (30%), Output waveform (35%)
-      const stringAreaHeight = height * 0.35;
-      const sensitivityAreaHeight = height * 0.30;
-      const waveformAreaHeight = height * 0.35;
+      // Layout: String (50%), Output waveform (50%)
+      const stringAreaHeight = height * 0.5;
+      const waveformAreaHeight = height * 0.5;
 
       // === STRING VISUALIZATION ===
       const stringCenterY = stringAreaHeight / 2;
@@ -331,46 +327,8 @@ export default function PickupPlacementSim({
       ctx.fillStyle = "#f97316";
       ctx.fillText("Pickup", pickupCanvasX, stringAreaHeight - 5);
 
-      // === MODE SENSITIVITY BARS ===
-      const sensitivityTop = stringAreaHeight;
-      const sensitivityPlotHeight = sensitivityAreaHeight - 30;
-      const barWidth = (width - 2 * padding) / N_MODES - 4;
-
-      ctx.fillStyle = "#3f3f46";
-      ctx.font = "11px system-ui";
-      ctx.textAlign = "left";
-      ctx.fillText("Harmonic sensitivity at pickup position:", padding, sensitivityTop + 15);
-
-      for (let n = 1; n <= N_MODES; n++) {
-        const sensitivity = getModeSensitivity(n, pickupX);
-        const barHeight = sensitivity * (sensitivityPlotHeight - 20);
-
-        const barX = padding + ((n - 1) / N_MODES) * (width - 2 * padding) + 2;
-        const barY = sensitivityTop + sensitivityPlotHeight - barHeight;
-
-        // Color based on harmonic number
-        const hue = 270 + ((n - 1) / N_MODES) * 60;
-        ctx.fillStyle = `hsl(${hue}, 70%, 55%)`;
-        ctx.fillRect(barX, barY, barWidth, barHeight);
-
-        // Mode number
-        ctx.fillStyle = "#3f3f46";
-        ctx.font = "9px system-ui";
-        ctx.textAlign = "center";
-        ctx.fillText(`${n}`, barX + barWidth / 2, sensitivityTop + sensitivityPlotHeight + 10);
-      }
-
-      // Zero nodes indicator
-      const nodePositions: number[] = [];
-      for (let n = 1; n <= N_MODES; n++) {
-        // Nodes at x = k*L/n for k = 1, 2, ..., n-1
-        for (let k = 1; k < n; k++) {
-          nodePositions.push((k * L) / n);
-        }
-      }
-
       // === OUTPUT WAVEFORM ===
-      const waveformTop = stringAreaHeight + sensitivityAreaHeight;
+      const waveformTop = stringAreaHeight;
       const waveformPlotHeight = waveformAreaHeight - 30;
       const waveformCenterY = waveformTop + waveformPlotHeight / 2;
 
@@ -424,7 +382,7 @@ export default function PickupPlacementSim({
 
       // Update time
       if (isPlayingRef.current) {
-        timeRef.current += 0.0003;
+        timeRef.current += 0.0003 * speedRef.current;
         if (timeRef.current > 5) {
           setIsPlaying(false);
           isPlayingRef.current = false;
@@ -440,7 +398,7 @@ export default function PickupPlacementSim({
       window.removeEventListener("resize", resize);
       cancelAnimationFrame(animationRef.current);
     };
-  }, [decompose, getXPoints, getModeSensitivity, getVelocityAtPickup]);
+  }, [decompose, getXPoints, getVelocityAtPickup]);
 
   return (
     <div className={className}>
@@ -503,6 +461,22 @@ export default function PickupPlacementSim({
               <span>← Explore full range</span>
               <span>Realistic positions →</span>
             </span>
+          </label>
+
+          <label className="flex flex-col gap-1 text-sm text-zinc-800 dark:text-zinc-400">
+            <span className="flex justify-between">
+              <span>Speed</span>
+              <span className="text-zinc-800 dark:text-zinc-400">{speed}×</span>
+            </span>
+            <input
+              type="range"
+              min="0.1"
+              max="2"
+              step="0.1"
+              value={speed}
+              onChange={(e) => setSpeed(parseFloat(e.target.value))}
+              className="w-full"
+            />
           </label>
 
           <p className="text-sm text-zinc-700 dark:text-zinc-500">

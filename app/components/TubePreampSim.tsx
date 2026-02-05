@@ -23,9 +23,33 @@ export default function TubePreampSim({ className = "" }: TubePreampSimProps) {
   const [inputLevel, setInputLevel] = useState(1.5);
   const [cathodeR, setCathodeR] = useState(1.5); // Cathode resistor in kΩ
 
-  // Soft clipping function (tube-style)
-  const softClip = useCallback((x: number, threshold: number = 1.0) => {
-    return threshold * Math.tanh(x / threshold);
+  // Asymmetric tube clipping - tubes clip differently on positive vs negative swings
+  // When biased too hot: clips hard on negative input (cutoff)
+  // When biased too cold: signal gets cut off, weak output
+  const tubeTransfer = useCallback((input: number, biasV: number) => {
+    // Effective grid voltage (input + bias)
+    const vGrid = input + biasV;
+
+    // Tube characteristics:
+    // - Cutoff around -4V to -6V (no plate current flows)
+    // - Clips when grid goes positive (grid current flows)
+    const cutoffV = -4.5;
+    const clipPositiveV = 0.5; // Grid can't go much above 0V
+
+    if (vGrid < cutoffV) {
+      // Hard cutoff - no output (flat bottom)
+      return 0;
+    } else if (vGrid > clipPositiveV) {
+      // Positive clipping (soft knee)
+      const excess = vGrid - clipPositiveV;
+      return -(clipPositiveV - biasV + excess * 0.1);
+    } else {
+      // Normal operation - inverted output
+      // Add some soft saturation
+      const normalized = (vGrid - cutoffV) / (-cutoffV);
+      const saturated = Math.tanh(normalized * 1.5) / Math.tanh(1.5);
+      return -(saturated * 4 + cutoffV - biasV);
+    }
   }, []);
 
   const draw = useCallback(() => {
@@ -72,9 +96,6 @@ export default function TubePreampSim({ className = "" }: TubePreampSimProps) {
 
     // Calculate bias from cathode resistor (V = I * R, assuming ~1mA quiescent current)
     const biasVoltage = -cathodeR * 1.0; // Approximation: 1mA * Rk(kΩ) = bias in volts
-
-    // Clipping threshold depends on bias - higher Rk = more headroom before clipping
-    const clipThreshold = cathodeR / 1.5; // Rk=1.5kΩ gives threshold=1.0
 
     // Current input signal value (for animation)
     const inputSignal = Math.sin(time * 2);
@@ -171,9 +192,9 @@ export default function TubePreampSim({ className = "" }: TubePreampSimProps) {
     for (let x = 0; x < waveWidth; x++) {
       const t = (x / waveWidth) * Math.PI * 4 - time * 2;
       const input = Math.sin(t) * inputLevel;
-      const output = softClip(-input * 0.7, clipThreshold);
-      // Signal rides on top of DC offset
-      const plotY = dcOffsetY - output * (smallWaveHeight * 0.35);
+      const output = tubeTransfer(input, biasVoltage);
+      // Signal rides on top of DC offset, scale for display
+      const plotY = dcOffsetY - output * (smallWaveHeight * 0.08);
       if (x === 0) ctx.moveTo(outputWaveX + x, plotY);
       else ctx.lineTo(outputWaveX + x, plotY);
     }
@@ -211,14 +232,23 @@ export default function TubePreampSim({ className = "" }: TubePreampSimProps) {
     ctx.fillText("0V", outputWaveX + 3, acWaveY - 3);
 
     // Draw AC output waveform (same shape, but centered on zero)
+    // Calculate DC offset to remove it (average of waveform)
+    let dcSum = 0;
+    for (let x = 0; x < waveWidth; x++) {
+      const t = (x / waveWidth) * Math.PI * 4;
+      const input = Math.sin(t) * inputLevel;
+      dcSum += tubeTransfer(input, biasVoltage);
+    }
+    const dcAvg = dcSum / waveWidth;
+
     ctx.strokeStyle = "#22c55e";
     ctx.lineWidth = 2;
     ctx.beginPath();
     for (let x = 0; x < waveWidth; x++) {
       const t = (x / waveWidth) * Math.PI * 4 - time * 2;
       const input = Math.sin(t) * inputLevel;
-      const output = softClip(-input * 0.7, clipThreshold);
-      const plotY = acWaveY - output * (smallWaveHeight * 0.35);
+      const output = tubeTransfer(input, biasVoltage) - dcAvg; // Remove DC
+      const plotY = acWaveY - output * (smallWaveHeight * 0.08);
       if (x === 0) ctx.moveTo(outputWaveX + x, plotY);
       else ctx.lineTo(outputWaveX + x, plotY);
     }
@@ -610,7 +640,7 @@ export default function TubePreampSim({ className = "" }: TubePreampSimProps) {
     ctx.textAlign = "right";
     ctx.fillText("Note: Output is phase-inverted (180°)", width - padding, infoY + 8);
 
-  }, [inputLevel, cathodeR, softClip]);
+  }, [inputLevel, cathodeR, tubeTransfer]);
 
   useEffect(() => {
     const animate = () => {
@@ -661,23 +691,25 @@ export default function TubePreampSim({ className = "" }: TubePreampSimProps) {
               </span>
               <input
                 type="range"
-                min="0.5"
-                max="3"
+                min="0.2"
+                max="6"
                 step="0.1"
                 value={cathodeR}
                 onChange={(e) => setCathodeR(parseFloat(e.target.value))}
                 className="w-full"
               />
               <span className="text-xs text-zinc-400 flex justify-between">
-                <span>Hot (clips early)</span>
-                <span>Cold (more headroom)</span>
+                <span>Too hot (severe clipping)</span>
+                <span>Too cold (cutoff)</span>
               </span>
             </label>
           </div>
 
           <p className="text-xs text-zinc-700 dark:text-zinc-500">
-            <strong>Watch the electrons:</strong> The cathode resistor sets the bias point. Lower
-            resistance = hotter bias = clips sooner. Higher resistance = colder bias = more clean headroom.
+            <strong>Watch the electrons and waveforms:</strong> The cathode resistor sets the bias point.
+            Too low (hot): severe asymmetric clipping, crossover distortion.
+            Too high (cold): tube approaches cutoff, weak/clipped output.
+            Try extreme values to see badly biased operation!
           </p>
         </div>
       </div>

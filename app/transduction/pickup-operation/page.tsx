@@ -8,7 +8,8 @@ export default function PickupOperationPage() {
         Pickup Operation
       </h1>
       <p className="text-zinc-800 dark:text-zinc-400 mb-8">
-        How electromagnetic pickups convert string vibration to voltage
+        How electromagnetic pickups transduce string vibration into electric
+        voltage
       </p>
 
       {/* Interactive Simulation */}
@@ -19,33 +20,34 @@ export default function PickupOperationPage() {
         {/* The Basic Setup */}
         <section>
           <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-200 mb-4">
-            The Basic Setup
+            The Setup
           </h2>
 
           <p className="text-zinc-900 dark:text-zinc-300 leading-relaxed">
-            A guitar pickup is elegantly simple. It consists of just three
-            components working together:
+            There are three components to consider in order to understand how a
+            guitar pickup works:
           </p>
 
           <div className="grid md:grid-cols-3 gap-4 my-6">
             <div className="bg-white dark:bg-zinc-900 rounded-xl p-4 border border-zinc-200 dark:border-zinc-700">
               <div className="w-10 h-10 rounded-lg bg-gradient-to-b from-red-500 to-blue-500 mb-3" />
               <h3 className="font-semibold text-zinc-900 dark:text-zinc-200 mb-1">
-                Permanent Magnet
+                Permanent Magnets
               </h3>
               <p className="text-sm text-zinc-800 dark:text-zinc-400">
-                Creates a steady magnetic field that extends up toward the
-                strings
+                Usually one per string, each creating a static magnetic field in
+                the region of space near the string
               </p>
             </div>
             <div className="bg-white dark:bg-zinc-900 rounded-xl p-4 border border-zinc-200 dark:border-zinc-700">
               <div className="w-10 h-10 rounded-lg bg-zinc-400 mb-3" />
               <h3 className="font-semibold text-zinc-900 dark:text-zinc-200 mb-1">
-                Steel String
+                Guitar String
               </h3>
               <p className="text-sm text-zinc-800 dark:text-zinc-400">
-                Made of magnetically permeable material that concentrates and
-                bends the field
+                Made of magnetically permeable material (e.g., steel, nickel)
+                that interacts with the magnetic field and alters it when it
+                vibrates
               </p>
             </div>
             <div className="bg-white dark:bg-zinc-900 rounded-xl p-4 border border-zinc-200 dark:border-zinc-700">
@@ -54,17 +56,20 @@ export default function PickupOperationPage() {
                 Wire Coil
               </h3>
               <p className="text-sm text-zinc-800 dark:text-zinc-400">
-                Thousands of turns of thin copper wire wrapped around the magnet
+                Thousands of turns of thin copper wire wrapped around the
+                magnets, forming an inductor that picks up changes in magnetic
+                flux
               </p>
             </div>
           </div>
 
           <div className="bg-zinc-100 dark:bg-zinc-800 p-4 rounded-lg">
             <p className="text-sm text-zinc-800 dark:text-zinc-400">
-              <strong>Why steel?</strong> Nylon strings don&apos;t work with
-              magnetic pickups because they&apos;re not magnetically permeable.
-              The string must be able to interact with the magnetic field, which
-              is why electric guitars use steel or nickel-wound strings.
+              <strong>Why metal strings?</strong> Nylon strings don&apos;t work
+              with magnetic pickups because they&apos;re not magnetically
+              permeable. The string must be able to interact with the magnetic
+              field, which is why electric guitars use steel or nickel-wound
+              strings.
             </p>
           </div>
         </section>
@@ -76,9 +81,10 @@ export default function PickupOperationPage() {
           </h2>
 
           <p className="text-zinc-900 dark:text-zinc-300 leading-relaxed">
-            The pickup works because of one of the most important laws in
-            electromagnetism: <strong>Faraday&apos;s Law</strong>. It states
-            that a changing magnetic field through a coil induces a voltage:
+            A pickup works because of one of the most important laws in
+            electromagnetism: <strong>Faraday&apos;s Law</strong>. In this
+            context, it states that a changing magnetic field through a coil
+            induces a voltage:
           </p>
 
           <div className="bg-gradient-to-r from-purple-50 to-orange-50 dark:from-purple-900/20 dark:to-orange-900/20 p-6 rounded-xl my-6 border border-purple-200 dark:border-purple-800">
@@ -93,8 +99,7 @@ export default function PickupOperationPage() {
                 V
               </span>
               <span className="text-zinc-900 dark:text-zinc-300">
-                The induced voltage (EMF) across the coil. This becomes your
-                guitar signal
+                The induced voltage (EMF) across the coil.
               </span>
             </li>
             <li className="flex gap-4 items-start">
@@ -117,23 +122,27 @@ export default function PickupOperationPage() {
           </ul>
 
           <p className="text-zinc-900 dark:text-zinc-300 leading-relaxed">
-            The key insight: the voltage is proportional to how{" "}
-            <em>quickly</em> the magnetic field changes, not just whether it
-            changes. A string sitting still produces no voltage, even if
-            it&apos;s displaced.
+            As a <em>magnetically permeable</em> guitar string vibrates, it
+            changes the magnetic field through the coil at the same frequencies
+            as it is vibrating at. According to Faraday&apos;s law, this
+            changing flux induces a voltage in the coil that mirrors the
+            string&apos;s motion. By this mechanism, mechanical vibrations are
+            <strong>transduced</strong> into an electrical signal!
           </p>
         </section>
 
         {/* Velocity, Not Position */}
         <section>
           <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-200 mb-4">
-            Velocity, Not Position
+            The Pickup Outputs Velocity, Not Position
           </h2>
 
           <p className="text-zinc-900 dark:text-zinc-300 leading-relaxed">
             When the string vibrates, it perturbs the magnetic field passing
-            through the coil. The rate of change of this perturbation is
-            directly proportional to the string&apos;s velocity:
+            through the coil. Since the amount of flux through the coil is
+            determined by the position of the string, the{" "}
+            <em>rate of change</em> of the string's position is what actually
+            induces the voltage. In other words:
           </p>
 
           <div className="bg-gradient-to-r from-purple-50 to-orange-50 dark:from-purple-900/20 dark:to-orange-900/20 p-6 rounded-xl my-6 border border-purple-200 dark:border-purple-800">
@@ -143,24 +152,24 @@ export default function PickupOperationPage() {
           </div>
 
           <p className="text-zinc-900 dark:text-zinc-300 leading-relaxed">
-            This has a profound consequence: the pickup outputs the{" "}
+            And so, the output voltage of the pickup is related to the{" "}
             <strong>derivative</strong> of the string position. In the
             simulation above, notice how:
           </p>
 
           <ul className="list-disc pl-6 space-y-2 text-zinc-900 dark:text-zinc-300">
             <li>
-              When the string is at maximum displacement (top or bottom), the
-              voltage is <strong>zero</strong> because the string has momentarily
-              stopped
+              When the string is the limits of its motion (top or bottom), the
+              voltage is <strong>zero</strong> because the string has
+              momentarily stopped
             </li>
             <li>
               When the string crosses through the center, the voltage is at{" "}
               <strong>maximum</strong> because the string is moving fastest
             </li>
             <li>
-              The voltage waveform leads the position waveform by 90° (quarter
-              cycle)
+              The voltage waveform is out of phase with the position waveform by
+              90° (quarter cycle)
             </li>
           </ul>
         </section>
@@ -168,7 +177,7 @@ export default function PickupOperationPage() {
         {/* Frequency Response */}
         <section>
           <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-200 mb-4">
-            Why Higher Frequencies Are Louder
+            Frequency Response and Treble Boost
           </h2>
 
           <p className="text-zinc-900 dark:text-zinc-300 leading-relaxed">
@@ -181,7 +190,8 @@ export default function PickupOperationPage() {
           </div>
 
           <p className="text-zinc-900 dark:text-zinc-300 leading-relaxed">
-            The peak velocity is proportional to both amplitude AND frequency:
+            We can see that the peak velocity is proportional to both amplitude
+            AND frequency:
           </p>
 
           <div className="bg-gradient-to-r from-purple-50 to-orange-50 dark:from-purple-900/20 dark:to-orange-900/20 p-6 rounded-xl my-6 border border-purple-200 dark:border-purple-800">
@@ -191,10 +201,13 @@ export default function PickupOperationPage() {
           </div>
 
           <p className="text-zinc-900 dark:text-zinc-300 leading-relaxed">
-            This means that even if two frequencies have the same displacement
-            amplitude, the higher frequency will produce a stronger signal
-            because the string moves faster. This gives pickups a natural{" "}
-            <strong>treble boost</strong>.
+            So, even if two frequencies have the same displacement amplitude
+            (i.e., two normal modes of the string have the same amplitude), the
+            higher frequency will produce a stronger signal because the string
+            moves faster. In the absence of any other effects, this gives
+            pickups a natural <strong>treble boost</strong>. As we'll see later,
+            the coil's inductance and parasitic capacitance actually modify this
+            response quite a bit.
           </p>
 
           <div className="bg-zinc-100 dark:bg-zinc-800 p-4 rounded-lg mt-4">
@@ -217,10 +230,13 @@ export default function PickupOperationPage() {
           </h2>
 
           <p className="text-zinc-900 dark:text-zinc-300 leading-relaxed">
-            From Faraday&apos;s law, voltage scales linearly with the number of
-            turns N. This is why pickup manufacturers wind thousands of turns.
-            But more wire also means more inductance and capacitance, which
-            fundamentally shapes the pickup&apos;s frequency response.
+            Recall from Faraday&apos;s law above that voltage scales linearly
+            with the number of turns N. In order to produce a strong enough
+            signal for downstream preamplifiers, guitar pickups typically have
+            thousands of turns of wire. But there is another consequence to
+            incrasing the number of turns: more inductance and capacitance,
+            which together fundamentally shape the pickup&apos;s frequency
+            response.
           </p>
 
           <div className="grid md:grid-cols-2 gap-6 my-6">
@@ -235,11 +251,12 @@ export default function PickupOperationPage() {
             </div>
             <div className="bg-white dark:bg-zinc-900 rounded-xl p-6 border border-zinc-200 dark:border-zinc-800">
               <h3 className="text-lg font-semibold text-orange-500 dark:text-orange-400 mb-2">
-                But Also More L and C
+                But Also More L (inductance) and C (capacitance)
               </h3>
               <p className="text-zinc-800 dark:text-zinc-400 text-sm">
-                More wire increases both inductance and parasitic capacitance,
-                which together form a resonant LC circuit.
+                The presence of inductance and capacitance creates a resonant
+                peak in the frequency response, which shifts lower with more
+                turns, resulting in a darker tone.
               </p>
             </div>
           </div>
@@ -249,13 +266,17 @@ export default function PickupOperationPage() {
           </h3>
 
           <p className="text-zinc-900 dark:text-zinc-300 leading-relaxed mb-4">
-            A pickup can be modeled as a simple RLC circuit:
+            Also including hte DC resistance of the coil, a pickup can be
+            modeled as an RLC circuit.
           </p>
 
           <ul className="list-disc pl-6 space-y-2 text-zinc-900 dark:text-zinc-300 mb-6">
             <li>
-              <strong>V<sub>emf</sub></strong>: The induced voltage from string
-              motion (proportional to frequency)
+              <strong>
+                V<sub>emf</sub>
+              </strong>
+              : The induced voltage from string motion (proportional to
+              frequency)
             </li>
             <li>
               <strong>R</strong>: DC resistance of the coil (typically 5-15 kΩ)
@@ -291,8 +312,43 @@ export default function PickupOperationPage() {
           </div>
 
           <p className="text-zinc-900 dark:text-zinc-300 leading-relaxed">
-            At the <strong>resonant frequency</strong>, the inductive and
-            capacitive reactances cancel out:
+            To find the output voltage, we use the voltage divider. The EMF
+            source V<sub>emf</sub> is in series with L and R, while C appears in
+            parallel across the output terminals:
+          </p>
+
+          <div className="bg-zinc-100 dark:bg-zinc-800 p-6 rounded-xl my-6 space-y-4">
+            <div className="text-center font-mono text-zinc-900 dark:text-zinc-200">
+              <div className="mb-2">
+                V<sub>out</sub> = V<sub>emf</sub> · Z<sub>C</sub> / (Z
+                <sub>LR</sub> + Z<sub>C</sub>)
+              </div>
+              <div className="text-sm text-zinc-800 dark:text-zinc-400 mb-4">
+                where Z<sub>LR</sub> = R + jωL and Z<sub>C</sub> = 1/(jωC)
+              </div>
+            </div>
+            <div className="text-center font-mono text-zinc-900 dark:text-zinc-200">
+              <div className="mb-1">Substituting and simplifying:</div>
+              <div className="text-lg mt-2">
+                V<sub>out</sub> = V<sub>emf</sub> · 1 / (1 − ω²LC + jωRC)
+              </div>
+            </div>
+          </div>
+
+          <p className="text-zinc-900 dark:text-zinc-300 leading-relaxed">
+            The transfer function H(jω) = V<sub>out</sub>/V<sub>emf</sub> has
+            magnitude:
+          </p>
+
+          <div className="bg-gradient-to-r from-purple-50 to-orange-50 dark:from-purple-900/20 dark:to-orange-900/20 p-6 rounded-xl my-6 border border-purple-200 dark:border-purple-800">
+            <div className="text-center font-mono text-xl text-zinc-900 dark:text-zinc-200">
+              |H(jω)| = 1 / √((1 − ω²LC)² + (ωRC)²)
+            </div>
+          </div>
+
+          <p className="text-zinc-900 dark:text-zinc-300 leading-relaxed">
+            At the <strong>resonant frequency</strong>, the term (1 − ω²LC)
+            becomes zero, which occurs when:
           </p>
 
           <div className="bg-gradient-to-r from-purple-50 to-orange-50 dark:from-purple-900/20 dark:to-orange-900/20 p-6 rounded-xl my-6 border border-purple-200 dark:border-purple-800">
@@ -301,10 +357,23 @@ export default function PickupOperationPage() {
             </div>
           </div>
 
+          <p className="text-zinc-900 dark:text-zinc-300 leading-relaxed mt-4">
+            Remember that V<sub>emf</sub> itself is proportional to frequency
+            (from Faraday&apos;s law). We see the complete frequency-dependent
+            output of the pickup by combining the frequency dependence of both
+            the input EMF and the transfer function:
+          </p>
+
+          <div className="bg-gradient-to-r from-purple-50 to-orange-50 dark:from-purple-900/20 dark:to-orange-900/20 p-6 rounded-xl my-6 border border-purple-200 dark:border-purple-800">
+            <div className="text-center font-mono text-xl text-zinc-900 dark:text-zinc-200">
+              |V<sub>out</sub>| ∝ ω / √((1 − ω²LC)² + (ωRC)²)
+            </div>
+          </div>
+
           <p className="text-zinc-900 dark:text-zinc-300 leading-relaxed">
             This creates a <strong>resonant peak</strong> in the frequency
-            response. The output rises with frequency (Faraday&apos;s law), peaks
-            at f₀, then rolls off as the capacitive reactance dominates.
+            response. The output rises with frequency (Faraday&apos;s law),
+            peaks at f₀, then rolls off as the capacitive reactance dominates.
           </p>
 
           <div className="bg-zinc-100 dark:bg-zinc-800 p-4 rounded-lg mt-4">
@@ -314,40 +383,6 @@ export default function PickupOperationPage() {
               shift to lower frequencies. This is why &quot;hot&quot; pickups
               with more windings sound darker because more inductance lowers f₀.
             </p>
-          </div>
-
-          <h3 className="text-xl font-semibold text-zinc-900 dark:text-zinc-200 mt-8 mb-4">
-            Typical Resonant Frequencies
-          </h3>
-
-          <div className="grid md:grid-cols-3 gap-4 my-6">
-            <div className="bg-white dark:bg-zinc-900 rounded-xl p-4 border border-zinc-200 dark:border-zinc-800 text-center">
-              <p className="text-2xl font-bold text-purple-600 dark:text-purple-400">
-                8-10 kHz
-              </p>
-              <p className="text-sm text-zinc-800 dark:text-zinc-400 mt-1">
-                Vintage single-coils
-              </p>
-              <p className="text-xs text-zinc-700 dark:text-zinc-500">Bright, glassy</p>
-            </div>
-            <div className="bg-white dark:bg-zinc-900 rounded-xl p-4 border border-zinc-200 dark:border-zinc-800 text-center">
-              <p className="text-2xl font-bold text-purple-600 dark:text-purple-400">
-                5-7 kHz
-              </p>
-              <p className="text-sm text-zinc-800 dark:text-zinc-400 mt-1">
-                PAF-style humbuckers
-              </p>
-              <p className="text-xs text-zinc-700 dark:text-zinc-500">Warm, balanced</p>
-            </div>
-            <div className="bg-white dark:bg-zinc-900 rounded-xl p-4 border border-zinc-200 dark:border-zinc-800 text-center">
-              <p className="text-2xl font-bold text-orange-500 dark:text-orange-400">
-                2-4 kHz
-              </p>
-              <p className="text-sm text-zinc-800 dark:text-zinc-400 mt-1">
-                High-output humbuckers
-              </p>
-              <p className="text-xs text-zinc-700 dark:text-zinc-500">Dark, thick</p>
-            </div>
           </div>
         </section>
 
@@ -374,8 +409,8 @@ export default function PickupOperationPage() {
               proportional to the string&apos;s <em>velocity</em>
             </li>
             <li>
-              Higher frequencies produce larger voltages for the same
-              amplitude, a natural treble boost
+              Higher frequencies produce larger voltages for the same amplitude,
+              a natural treble boost
             </li>
             <li>
               More coil turns increase output but also increase capacitance

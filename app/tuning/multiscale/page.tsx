@@ -18,12 +18,12 @@ export default function MultiscalePage() {
         {/* The Core Physics */}
         <section>
           <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-200 mb-4">
-            The Physics: Scale Length and Tension
+            Scale Length and Tension
           </h2>
 
           <p className="text-zinc-900 dark:text-zinc-300 leading-relaxed">
-            The fundamental frequency of a vibrating string depends on three
-            factors: length, tension, and mass. The relationship is:
+            The fundamental frequency of a string depends on three factors:
+            length, tension, and linear mass density. The relationship is:
           </p>
 
           <div className="bg-zinc-100 dark:bg-zinc-800 p-4 rounded-lg my-4 font-mono text-center">
@@ -42,7 +42,7 @@ export default function MultiscalePage() {
 
           <p className="text-zinc-900 dark:text-zinc-300 leading-relaxed">
             Notice that tension scales with the <strong>square</strong> of the
-            scale length. If you increase the string length, more tension is
+            scale length. If we increase the string length, more tension is
             required to reach the same pitch.
           </p>
         </section>
@@ -50,7 +50,7 @@ export default function MultiscalePage() {
         {/* The Problem with Standard Scale */}
         <section>
           <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-200 mb-4">
-            The Problem with One Scale Length
+            The Problem with Standard Guitars
           </h2>
 
           <p className="text-zinc-900 dark:text-zinc-300 leading-relaxed">
@@ -62,7 +62,7 @@ export default function MultiscalePage() {
           <div className="grid md:grid-cols-2 gap-6 my-6">
             <div className="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-6 border border-blue-200 dark:border-blue-800">
               <h3 className="text-lg font-semibold text-blue-700 dark:text-blue-400 mb-2">
-                Low Strings: Often Too Loose
+                Low Strings
               </h3>
               <ul className="list-disc pl-6 space-y-1 text-zinc-800 dark:text-zinc-400 text-sm">
                 <li>Floppy feel, especially on extended range guitars</li>
@@ -76,13 +76,15 @@ export default function MultiscalePage() {
             </div>
             <div className="bg-orange-50 dark:bg-orange-900/20 rounded-xl p-6 border border-orange-200 dark:border-orange-800">
               <h3 className="text-lg font-semibold text-orange-700 dark:text-orange-400 mb-2">
-                High Strings: Trade-offs
+                High Strings
               </h3>
               <ul className="list-disc pl-6 space-y-1 text-zinc-800 dark:text-zinc-400 text-sm">
-                <li>Longer scale = higher tension, harder bends</li>
-                <li>Frets spaced farther apart for stretches</li>
-                <li>Shorter scale = easier playing but less bass clarity</li>
-                <li>One size doesn&apos;t fit all</li>
+                <li>Higher tension means harder bends and vibrato</li>
+                <li>Wider fret spacing makes stretching harder</li>
+                <li>
+                  Can use thinner gauge strings, but they may feel too tight and
+                  have a brittle tone
+                </li>
               </ul>
             </div>
           </div>
@@ -91,7 +93,7 @@ export default function MultiscalePage() {
         {/* The Multiscale Solution */}
         <section>
           <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-200 mb-4">
-            The Solution: Variable Scale Length
+            A Solution: Vary the Scale Length Across the Strings
           </h2>
 
           <p className="text-zinc-900 dark:text-zinc-300 leading-relaxed">
@@ -118,7 +120,7 @@ export default function MultiscalePage() {
           </div>
 
           <p className="text-zinc-900 dark:text-zinc-300 leading-relaxed">
-            This gives you the best of both worlds:
+            This gives us the best of both worlds:
           </p>
 
           <div className="space-y-4 my-6">
@@ -129,8 +131,8 @@ export default function MultiscalePage() {
                   More tension on low strings
                 </h3>
                 <p className="text-zinc-800 dark:text-zinc-400 text-sm">
-                  Keeps them stiff and articulate. Improved sustain and more
-                  consistent intonation.
+                  Keeps them stiff. Improved sustain and more consistent
+                  intonation.
                 </p>
               </div>
             </div>
@@ -142,8 +144,8 @@ export default function MultiscalePage() {
                   Comfortable tension on high strings
                 </h3>
                 <p className="text-zinc-800 dark:text-zinc-400 text-sm">
-                  Easier string bending for lead playing. Closer fret spacing
-                  for faster runs and smaller stretches.
+                  Easier string bending and vibrato for lead playing. Closer
+                  fret spacing for faster runs and smaller stretches.
                 </p>
               </div>
             </div>
@@ -152,11 +154,11 @@ export default function MultiscalePage() {
               <div className="w-3 h-3 rounded-full bg-purple-600 mt-1.5 flex-shrink-0" />
               <div>
                 <h3 className="font-semibold text-zinc-900 dark:text-zinc-200">
-                  Ergonomic comfort
+                  Ergonomics and Playability
                 </h3>
                 <p className="text-zinc-800 dark:text-zinc-400 text-sm">
                   The fanned frets actually match the natural angle of your
-                  fretting hand better, especially in lower positions.
+                  fretting hand better, especially in lower positions!
                 </p>
               </div>
             </div>
@@ -172,15 +174,20 @@ export default function MultiscalePage() {
           <p className="text-zinc-900 dark:text-zinc-300 leading-relaxed">
             If the bass strings are longer than the treble strings, the nut and
             bridge can&apos;t both be perpendicular to the strings. The frets
-            must be angled to maintain proper intonation on each string.
+            must be angled to maintain proper intonation on each string. This is
+            still achieving the correct fret positions for 12-tone equal
+            temperament, just at an angle rather than straight across.
           </p>
 
           <div className="bg-zinc-100 dark:bg-zinc-800 p-4 rounded-lg my-4">
             <p className="text-sm text-zinc-800 dark:text-zinc-400">
-              <strong>The math still works:</strong> Each fret is still placed
-              at the correct ratio (2^(n/12)) along each individual string,
-              achieving 12 equal-tempered semitones per octave. The frets just
-              connect these points at an angle rather than straight across.
+              <strong>
+                The math for 12-tone equal temperatment still works:
+              </strong>{" "}
+              Each fret is still placed at the correct ratio (2^(n/12)) along
+              each individual string, achieving 12 equal-tempered semitones per
+              octave. The frets just connect these points at an angle rather
+              than straight across.
             </p>
           </div>
 
@@ -194,7 +201,7 @@ export default function MultiscalePage() {
         {/* Extended Range */}
         <section>
           <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-200 mb-4">
-            A Huge Benefit for Extended Range Guitars
+            Extended Range Guitars
           </h2>
 
           <p className="text-zinc-900 dark:text-zinc-300 leading-relaxed">
@@ -205,14 +212,16 @@ export default function MultiscalePage() {
           <div className="bg-gradient-to-r from-purple-50 to-orange-50 dark:from-purple-900/20 dark:to-orange-900/20 p-6 rounded-xl my-6 border border-purple-200 dark:border-purple-800">
             <p className="text-center text-zinc-900 dark:text-zinc-300 font-medium">
               A standard 25.5&quot; scale makes a low F# (on an 8-string) feel
-              too loose to play well, while a longer 27&quot; scale makes the
-              high strings too tight and hard to bend.
+              too loose to play well, while a longer 27&quot; or longer scale
+              makes the high strings too tight and hard to bend.
             </p>
           </div>
 
           <p className="text-zinc-900 dark:text-zinc-300 leading-relaxed">
-            This is why multiscale designs have become the standard for modern
-            extended-range metal guitars. The physics simply demands it.
+            This is why multiscale designs have become so common in the extended
+            range guitar market. They allow players to have a playable tension
+            on all strings without resorting to extreme string gauges or
+            sacrificing tone and sustain on the low end.
           </p>
         </section>
 
